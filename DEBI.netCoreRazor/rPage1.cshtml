@@ -1,0 +1,86 @@
+﻿@{
+    Layout = "layoutpage.cshtml";
+}
+
+@{
+    var name = "Abdo";
+    var age = 23;
+    var te = "";
+}
+
+@{
+    if (DateTime.Now.Hour < 12)
+    {
+        te = "HI,GOOD MORING";
+    }
+    else
+    {
+        te = " HI,good evening";
+    }
+}
+
+@{
+    //string getname = Request.QueryString["name"];
+    //var getage = Request.QueryString["age"];
+
+    string getname = Request.Form["name"];
+    var getage = Request.Form["age"];
+
+}
+@{
+    var imagepath = "";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        hello my name is @name and my age is @age
+        so @te and @name
+    </div>
+    <form action="" method="post">
+        <input type="text" name="name" value="" />
+        <input type="text" name="age" value="" />
+        <select name="choice">
+            <option value="bk7.jpg">neam</option>
+            <option value="bk1.jpg">neam</option>
+            <option value="bk3.jpg">neam</option>
+            <option value="bk.jpg">neam</option>
+            <option value="bk6.jpg">neam</option>
+        </select>
+        <input type="submit" name="submit" />
+    </form>
+    @{
+
+
+        @*if (!Request.Form["name"].IsEmpty() && !Request.Form["age"].IsEmpty())
+            {
+                <div>
+                    ur name is (@getname) and ur age is (@getage)
+                </div>
+            }*@
+        @*if (!IsPost)
+            {
+                <div>
+                    ur name is (@getname) and ur age is (@getage)
+                </div>
+            }*@
+        if (!Request.Form["choice"].IsEmpty())
+        {
+            imagepath = "images/" + Request["choice"];
+
+
+        }
+
+    }
+    <div>
+        <img src=@imagepath alt="text allowed" />
+    </div>
+    @*@RenderPage("layoutpage.cshtml")*@
+</body>
+</html>
